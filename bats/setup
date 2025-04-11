@@ -12,8 +12,8 @@ slexe() {
           _err "Error: bin/slexfe not found."
           exit 1
         }
-        [ -x bin/slangroom-exec ] || {
-          _err "Error: bin/slangroom-exec not found."
+        command -v slangroom-exec > /dev/null || {
+          _err "Error: slangroom-exec not found."
           exit 1
         }
         [ -r "${1}.slang" ] || {
