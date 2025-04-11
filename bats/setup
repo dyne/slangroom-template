@@ -1,0 +1,26 @@
+TMP="$BATS_TEST_TMPDIR"
+load bats/test_helper/bats_support/load
+load bats/test_helper/bats_assert/load
+load bats/test_helper/bats_file/load
+function _out() {     printf "$*\n"; }
+function _err() { >&2 printf "$*\n"; }
+slexe() {
+        [ -r bin/slexfe ] || {
+          _err "Error: bin/slexfe not found."
+          exit 1
+        }
+        [ -x bin/slangroom-exec ] || {
+          _err "Error: bin/slangroom-exec not found."
+          exit 1
+        }
+        [ -r "${1}.slang" ] || {
+          _err "Error: script not found: $1"
+          exit 1
+        }
+        tmpout=$TMP/out
+        tmperr=$TMP/err
+        bash bin/slexfe -F $1 \
+          | bin/slangroom-exec \
+              1>$tmpout 2> >(tee $tmperr >&2)
+        export output=`cat $TMP/out`
+}
