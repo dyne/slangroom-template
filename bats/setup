@@ -23,7 +23,7 @@ slexe() {
         tmpout=$TMP/out
         tmperr=$TMP/err
         bash bin/slexfe -F $1 \
-          | bin/slangroom-exec \
+          | slangroom-exec \
               1>$tmpout 2> >(tee $tmperr >&2)
         export output=`cat $TMP/out`
 }
