@@ -8,3 +8,8 @@ load bats/setup
   slexe test/timestamp
   assert_output --partial 'timestamp'
 }
+
+@test "Test generic template file read" {
+  slexe test/fileread
+  # assert_output --partial 'timestamp'
+}

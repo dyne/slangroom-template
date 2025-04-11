@@ -1,4 +1,7 @@
 TMP="$BATS_TEST_TMPDIR"
+T="$BATS_TEST_DIRNAME"
+# root where slangroom starts searching for files
+export FILES_DIR="$T"
 load bats/test_helper/bats_support/load
 load bats/test_helper/bats_assert/load
 load bats/test_helper/bats_file/load
