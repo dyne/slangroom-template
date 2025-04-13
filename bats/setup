@@ -7,6 +7,7 @@ load bats/test_helper/bats_assert/load
 load bats/test_helper/bats_file/load
 function _out() {     printf "$*\n"; }
 function _err() { >&2 printf "$*\n"; }
+
 slexe() {
         [ -r bin/slexfe ] || {
           _err "Error: bin/slexfe not found."
@@ -20,10 +21,8 @@ slexe() {
           _err "Error: script not found: $1"
           exit 1
         }
-        tmpout=$TMP/out
-        tmperr=$TMP/err
-        bash bin/slexfe -F $1 \
-          | slangroom-exec \
-              1>$tmpout 2> >(tee $tmperr >&2)
+        # run bats_pipe bash bin/slexfe -F $1 \| bin/slangroom-exec
+        bash bin/slexfe -F $1 | bin/slangroom-exec \
+             1>$TMP/out 2> >(tee $TMP/err >&2)
         export output=`cat $TMP/out`
 }

@@ -9,6 +9,7 @@ Journey made with [Zencode](https://dev.zenroom.org) using [Zenroom](https://zen
 mise install
 mise use slangroom-exec
 eval `mise env`
+ln -s `which slangroom-exec` bin/slangroom-exec
 ```
 
 ### with shell
@@ -21,5 +22,3 @@ wget https://github.com/dyne/slangroom-exec/releases/latest/download/slangroom-e
 ### Write Zencode
 
 Put in `src/` your scripts and data files
-
-
