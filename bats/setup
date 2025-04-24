@@ -24,7 +24,7 @@ slexe() {
     exit 1
   }
   # run bats_pipe bash slexfe -F $1 \| slangroom-exec
-  bash slexfe -F $1 | slangroom-exec \
+  slexfe -F $1 | slangroom-exec \
                             1>$TMP/out 2> >(tee $TMP/err >&2)
   local res=$?
   export output=`cat $TMP/out`
