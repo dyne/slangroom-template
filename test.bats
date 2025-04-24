@@ -3,9 +3,9 @@ setup() {
 }
 
 @test "slangroom-exec exists and is executable" {
-    assert_file_exists bin/slangroom-exec
-    assert_file_executable bin/slangroom-exec
-    assert_size_not_zero bin/slangroom-exec
+    run slangroom-exec --version
+    assert_success
+    assert_output --partial 'License AGPL-3.0-or-later: GNU AGPL version 3 <https://www.gnu.org/licenses/agpl-3.0.html>'
 }
 
 @test "Test generic template hello world" {
