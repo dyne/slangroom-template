@@ -11,8 +11,8 @@ function _out() {     printf "$*\n"; }
 function _err() { >&2 printf "$*\n"; }
 slexe() {
   set +e
-  [ -r bin/slexfe ] || {
-    _err "Error: bin/slexfe not found."
+  which slexfe >/dev/null || {
+    _err "Error: slangroom-exec not found."
     exit 1
   }
   command -v slangroom-exec > /dev/null || {
@@ -23,8 +23,8 @@ slexe() {
     _err "Error: script not found: $1"
     exit 1
   }
-  # run bats_pipe bash bin/slexfe -F $1 \| bin/slangroom-exec
-  bash bin/slexfe -F $1 | bin/slangroom-exec \
+  # run bats_pipe bash slexfe -F $1 \| slangroom-exec
+  bash slexfe -F $1 | slangroom-exec \
                             1>$TMP/out 2> >(tee $TMP/err >&2)
   local res=$?
   export output=`cat $TMP/out`
