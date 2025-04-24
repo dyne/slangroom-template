@@ -12,7 +12,7 @@ function _err() { >&2 printf "$*\n"; }
 slexe() {
   set +e
   which slexfe >/dev/null || {
-    _err "Error: slangroom-exec not found."
+    _err "Error: slexfe not found."
     exit 1
   }
   command -v slangroom-exec > /dev/null || {
