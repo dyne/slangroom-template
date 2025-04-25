@@ -1,24 +1,28 @@
 setup() {
   load bats/setup
+  PATH="$PWD/bin:$PATH"
 }
 
-@test "slangroom-exec exists and is executable" {
-    assert_file_exists bin/slangroom-exec
-    assert_file_executable bin/slangroom-exec
-    assert_size_not_zero bin/slangroom-exec
+contract_with_data() {
+    slexfe -d test/${1}.data.json -s test/${1}.slang | slangroom-exec
+}
+
+contract() {
+    slexfe -s test/${1}.slang 2>&1 | slangroom-exec 
 }
 
 @test "Test generic template hello world" {
-  slexe test/hello
-  assert_output --partial 'Welcome_to_slangroom-exec_🥳'
+  run contract hello
+  assert_output --partial "Welcome_to_slangroom-exec_🥳"
 }
 
 @test "Test generic template timestamp" {
-  slexe test/timestamp
+  run contract timestamp
   assert_output --partial 'timestamp'
 }
 
 @test "Test generic template file read" {
-  slexe test/fileread
+  export FILES_DIR=${PWD}
+  run contract_with_data fileread
   assert_output --partial 'Welcome to slangroom-exec 🥳'
 }
