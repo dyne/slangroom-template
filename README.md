@@ -7,16 +7,15 @@ Journey made with [Zencode](https://dev.zenroom.org) using [Zenroom](https://zen
 ### with mise-en-place
 ```
 mise install
-mise use slangroom-exec
-eval `mise env`
-ln -s `which slangroom-exec` bin/slangroom-exec
 ```
 
 ### with shell
 
 ```bash
 wget https://github.com/dyne/slangroom-exec/releases/latest/download/slangroom-exec-$(uname)-$(uname -m) \
-	-O bin/slangroom-exec && chmod +x bin/slangroom-exec
+	-O /usr/local/bin/slangroom-exec && chmod +x /usr/local/bin/slangroom-exec
+wget https://github.com/dyne/slangroom-exec/releases/latest/download/slexfe \
+	-O /usr/local/bin/slexfe && chmod +x /usr/local/bin/slexfe
 ```
 
 ### Write Zencode
